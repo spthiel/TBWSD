@@ -185,6 +185,11 @@ body {
     place-items: center;
 }
 
+#color {
+    padding: 5px;
+    border-radius: 4px;
+}
+
 .modal {
     background: azure;
     display: flex;

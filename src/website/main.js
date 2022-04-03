@@ -40,7 +40,8 @@ const elements = {
 	bestColor: document.getElementById('colorleaderboard'),
 	messageBox: document.getElementById('message'),
 	messageButton: document.getElementById('sendMessage'),
-	chat: document.getElementById('messages')
+	chat: document.getElementById('messages'),
+	color: document.getElementById('color')
 }
 
 let clicks = 0;
@@ -50,11 +51,12 @@ webSocket.addEventListener('message', (event) => {
 	let msg = event.data.substring(packets.PACKETWIDTH);
 
 	switch (packet) {
-		case packets.COUNT:
+		case packets.COUNT: {
 			elements.ball.style.left = msg + "%";
 			let color = findColorFor(msg);
 			elements.ball.style.background = color.getColorHex();
 			break;
+		}
 		case packets.IDENTIFY:
 			elements.login.innerText = "Logged in as " + msg;
 			elements.messageBox.removeAttribute('disabled');
@@ -93,6 +95,12 @@ webSocket.addEventListener('message', (event) => {
 			message.appendChild(badge);
 			message.appendChild(content);
 			elements.chat.appendChild(message);
+			break;
+		case packets.COLOR:
+			let color = findColorById(parseInt(msg));
+			elements.color.removeAttribute('hidden');
+			elements.color.style.background = color.getColorHex();
+			elements.color.innerText = "Your color: " + color.getName();
 			break;
 	}
 });

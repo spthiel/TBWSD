@@ -42,8 +42,10 @@ class ColorHandler {
 		if (this.isBetterColor(oldUserColor, color)) {
 			this.cache[snowflake] = color;
 			Connector.setColorOfUser(snowflake, color);
+			return color;
 		} else {
 			this.cache[snowflake] = oldUserColor;
+			return false;
 		}
 	}
 

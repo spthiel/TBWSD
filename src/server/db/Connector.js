@@ -101,7 +101,7 @@ class Connector {
 	}
 
 	insertUser(id, username, snowflake) {
-		this.pool.query('INSERT INTO users (discordId, username, snowflake) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE username = VALUES(username), snowflake = VALUES(snowflake)', [id, username, snowflake])
+		return this.query('INSERT INTO users (discordId, username, snowflake) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE username = VALUES(username), snowflake = VALUES(snowflake)', [id, username, snowflake])
 	}
 
 	click(snowflake) {

@@ -68,6 +68,10 @@ class Color {
 	isDefault() {
 		return this.default;
 	}
+
+	getName() {
+		return this.name;
+	}
 }
 
 export const defaultColor = new Color('', '#cccccc', 0, 80);

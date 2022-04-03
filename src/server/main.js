@@ -48,8 +48,15 @@ app.ws("/button*", (ws, req) => {
 						if (!snowflake) {
 							snowflake = createSnowflake();
 							ws.send(packets.SNOWFLAKE + snowflake);
+						} else {
 						}
-						connector.insertUser(userinfo.id, userinfo.username, snowflake);
+						connector.insertUser(userinfo.id, userinfo.username, snowflake)
+							.then(ignored => {
+								connector.getColorOfUser(snowflake)
+									.then(color => {
+										ws.send(packets.COLOR + color);
+									})
+							});
 						ws.send(packets.IDENTIFY + userinfo.username);
 						leaderboardHandler.sendToSingle(ws);
 						return Connector.getClickCount(userinfo.id);
@@ -70,7 +77,12 @@ app.ws("/button*", (ws, req) => {
 				if (!snowflake) {break;}
 				if(buttonHandler.click()) {
 					Connector.click(snowflake);
-					ColorHandler.click(snowflake);
+					ColorHandler.click(snowflake)
+						.then(color => {
+							if (color) {
+								ws.send(packets.COLOR + color.dbid);
+							}
+						});
 					ws.send(packets.CLICK);
 				}
 				break;
