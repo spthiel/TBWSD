@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>TBWSD</title>
+        <link href="main.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="layout">
+            <div id="login" class="top-center">
+                <a href="/login" class="login">
+                    Login with discord to be eligible for leaderboards
+                </a>
+            </div>
+            <div class="left">
+                <h2>Best Color</h2>
+                <div id="colorleaderboard" class="leaderboard">
+                    <span>No data</span>
+                </div>
+            </div>
+            <div class="center-center flex-column flex-center">
+                <span>Your clicks: <span id="clicks">0</span></span>
+                <div class="track">
+                    <div id="ball"></div>
+                </div>
+                <div id="mainbutton" class="button">
+                    Button
+                </div>
+            </div>
+            <div class="right">
+                <h2>Most Clicks</h2>
+                <div id="clickleaderboard" class="leaderboard">
+                    <span>No data</span>
+                </div>
+            </div>
+            <div class="chat bottom">
+                <div id="messages">
+                </div>
+                <form id="messageForm" class="input">
+                    <input id="message" type="text" maxlength="140" placeholder="You need to log in to send messages" disabled>
+                    <button id="sendMessage" disabled>Send</button>
+                </form>
+            </div>
+        </div>
+        <div hidden id="explanation">
+            <div class="modal">
+                <h1>This button will self destruct</h1>
+                <span>How it works:</span>
+                <span>1. In the center you can see a progress bar. This progress bar ticks down by 1 step every second.</span>
+                <span>2. If you click the button, unless the bar is full, it will add 1 step back to the bar.</span>
+                <span>3. If you click the button while the bar is in one of the colored areas you will receive that color.</span>
+                <span>4. If the bar hits 0 after a full day the site will delete itself!</span>
+                <span>&nbsp;</span>
+                <button disabled>Ok!</button>
+            </div>
+        </div>
+        <script src="main.js" type="module"></script>
+    </body>
+</html>
